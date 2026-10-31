@@ -1,0 +1,5 @@
+streamlit>=1.49,<2
+streamlit-folium>=0.23,<1
+folium>=0.18,<1
+pandas>=2.2,<3
+geopy>=2.4,<3
