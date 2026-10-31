@@ -16,7 +16,7 @@ from geopy.extra.rate_limiter import RateLimiter
 from geo_utils import eligible, haversine_km, valid_point
 
 ROOT = Path(__file__).resolve().parent
-COLORS = ["#1976d2", "#923cb5"]
+ROUTE_COLOR = "#8B0000"
 
 st.set_page_config(
     page_title="Gujarat ITI Distance Finder",
@@ -354,15 +354,12 @@ for r in filtered:
             popup += f"<br>Location {i + 1}: ≈ {km:,.0f} km"
 
             if show_lines and (selected is None or selected == r["id"]):
-                label = (
-                    f'{escape(p["name"])} → {escape(r["name"])}: '
-                    f"≈ {km:,.0f} km (air)"
-                )
+                label = f'{escape(r["name"])}- {km:,.0f} km'
                 folium.PolyLine(
                     [[p["lat"], p["lon"]], [r["lat"], r["lon"]]],
-                    color=COLORS[i],
-                    weight=3 if selected else 1,
-                    opacity=0.85 if selected else 0.22,
+                    color=ROUTE_COLOR,
+                    weight=4 if selected else 2.5,
+                    opacity=1.0 if selected else 0.88,
                     tooltip=folium.Tooltip(
                         label,
                         permanent=show_labels or selected is not None,
